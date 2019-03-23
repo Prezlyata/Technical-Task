@@ -1,0 +1,131 @@
+body{
+	background-color: #000000;	
+}
+.container {
+	max-width: 1910px;
+	margin: 0 auto;
+}
+a{
+	text-decoration: none;
+}
+* {
+	padding: 0;
+	border: 0;
+	margin: 0; 
+}
+.layout{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	&_infobar{
+		background-color: #111111;
+		border: solid 2px #f26d33;
+		border-radius: 22px;
+		width: 480px;
+		height: 450px;
+		&_top{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: flex-start;
+			&_logo{
+				background-color:#994826;
+				width: 192px;
+				height: 164;
+				border-radius: 20px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			&_info{
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				margin: 0 auto;
+				&_connect{
+					padding: 5px 0 12px;
+					margin: 0 auto;
+					span{
+						img{
+							width: 30px;
+							filter: invert(100%);
+						}
+					}
+				}
+				&_date{
+					color: #fff;
+					text-align: center;
+					font-size: 31px;
+					font-style: normal;
+					font-weight: 600;
+					font-family: LatoLight, sans-serif;
+					padding: 0 5px;
+				}
+			}
+		}
+		&_time{
+			color: #fff;
+			text-align: center;
+			font-size: 80px;
+			font-style: normal;
+			font-weight: 600;
+			font-family: LatoLight, sans-serif;
+			padding: 60px 0 100px;
+		}
+		&_description{
+			color: #fff;
+			text-align: center;
+			font-size: 37px;
+			font-style: normal;
+			font-weight: 600;
+			font-family: LatoLight, sans-serif;
+		}
+	}
+	&_row1{
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		&_block{
+			text-align: center;
+			&_pictures{
+				display: flex;
+				justify-content: space-between;
+				flex-direction: row;
+				border: solid 2px #f26d33;
+				border-radius: 22px;
+				width: 233px;
+				height: 220px;
+				img{
+					filter: invert(100%);
+					width: 120px;
+					padding-left: 5px;
+				}
+				&_info{
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+					padding-right: 10px;
+					padding-top: 10px;
+					span{
+						align-items: flex-end;
+						color: #fff;
+						font-style: normal;
+						font-weight: 600;
+						font-family: LatoLight, sans-serif;
+						font-size: 35px;	
+					}
+				}
+			}
+			&_description{
+				text-transform: uppercase;
+				font-style: normal;
+				font-weight: 600;
+				font-family: LatoLight, sans-serif;
+				font-size: 20px;
+				color: #fff;
+				padding-top: 3px;
+			}
+		}
+	}
+}
