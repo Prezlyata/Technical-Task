@@ -1,21 +1,26 @@
 <template>
   <div id="tableVue" class="container-fluid">
     <header>{{ title }}</header>
-    <input v-on:keypress.enter="addItem" id="callControl">
-    <input v-on:keypress.enter="addItem" id="read">
-    <input v-on:keypress.enter="addItem" id="sound">
-    <input v-on:keypress.enter="addItem" id="truck">
-    <input v-on:keypress.enter="addItem" id="origin">
-    <input v-on:keypress.enter="addItem" id="destination">
-    <input v-on:keypress.enter="addItem" id="pickup">
-    <input v-on:keypress.enter="addItem" id="dho">
-    <input v-on:keypress.enter="addItem" id="dhd">
-    <input v-on:keypress.enter="addItem" id="fp">
-    <input v-on:keypress.enter="addItem" id="len">
-    <input v-on:keypress.enter="addItem" id="weight">
-    <input v-on:keypress.enter="addItem" id="trip">
-    <input v-on:keypress.enter="addItem" id="actions">
-    <button v-on:click="addItem">Add</button>
+
+    <modal name="hello-world">
+      <input v-on:keypress.enter="addItem" id="callControl">
+      <input v-on:keypress.enter="addItem" id="read">
+      <input v-on:keypress.enter="addItem" id="sound">
+      <input v-on:keypress.enter="addItem" id="truck">
+      <input v-on:keypress.enter="addItem" id="origin">
+      <input v-on:keypress.enter="addItem" id="destination">
+      <input v-on:keypress.enter="addItem" id="pickup">
+      <input v-on:keypress.enter="addItem" id="dho">
+      <input v-on:keypress.enter="addItem" id="dhd">
+      <input v-on:keypress.enter="addItem" id="fp">
+      <input v-on:keypress.enter="addItem" id="len">
+      <input v-on:keypress.enter="addItem" id="weight">
+      <input v-on:keypress.enter="addItem" id="trip">
+      <input v-on:keypress.enter="addItem" id="actions">
+      <button v-on:click="addItem">Add</button>
+    </modal>
+    <button v-on:click="show">open modal</button>
+
     <ul>
       <li v-for="(item, index) in items" :key="`${index}-${item.id}`">
         <button id="x" v-on:click="deleteItem(index)">Delete</button>
@@ -35,6 +40,10 @@
         <th>{{ item.actions }}</th>
       </li>
     </ul>
+    <button v-on:click="deleteTable">Delete table</button>
+    <button v-on:click="clearInputs">Clear fields</button>
+    <button v-on:click="play">Play</button>
+    <button v-on:click="stop">Stop</button>
   </div>
 </template>
 
@@ -44,7 +53,23 @@ export default {
   data() {
     return {
       title: "Vue",
-      items: []
+      items: [],
+      playObject: {
+        callControl: 'play',
+        read: 'play',
+        sound: 'play',
+        truck: 'play',
+        origin: 'play',
+        destination: 'play',
+        pickup: 'play',
+        dho: 'play',
+        dhd: 'play',
+        fp: 'play',
+        len: 'play',
+        weight: 'play',
+        trip: 'play',
+        actions: 'play'
+      }
     };
   },
   methods: {
@@ -80,24 +105,50 @@ export default {
           trip: trip.value,
           actions: actions.value
         });
-        callControl.value = "";
-        read.value = "";
-        sound.value = "";
-        truck.value = "";
-        origin.value = "";
-        destination.value = "";
-        pickup.value = "";
-        dho.value = "";
-        dhd.value = "";
-        fp.value = "";
-        len.value = "";
-        weight.value = "";
-        trip.value = "";
-        actions.value = "";
+        this.clearInputs();
       }
+      this.hide();
     },
     deleteItem: function(index) {
       this.items.splice(index, 1);
+    },
+    deleteTable: function() {
+      this.items.length = 0;
+      this.$forceUpdate();
+    },
+    clearInputs: function() {
+      document.getElementById("callControl").value = '';
+      document.getElementById("read").value = '';
+      document.getElementById("sound").value = '';
+      document.getElementById("truck").value = '';
+      document.getElementById("origin").value = '';
+      document.getElementById("destination").value = '';
+      document.getElementById("pickup").value = '';
+      document.getElementById("dho").value = '';
+      document.getElementById("dhd").value = '';
+      document.getElementById("fp").value = '';
+      document.getElementById("len").value = '';
+      document.getElementById("weight").value = '';
+      document.getElementById("trip").value = '';
+      document.getElementById("actions").value = '';
+    },
+    play: function() {
+      let self = this;
+      setInterval(function(){
+        self.items.push(self.playObject);
+        self.$forceUpdate();
+      }, 1000);
+    },
+    stop: function () {
+      for (let i = 1; i < 99999; i++) {
+        window.clearInterval(i);
+      }
+    },
+    show () {
+      this.$modal.show('hello-world');
+    },
+    hide () {
+      this.$modal.hide('hello-world');
     }
   }
 };
