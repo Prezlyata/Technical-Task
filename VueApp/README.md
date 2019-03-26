@@ -7,7 +7,9 @@
 ``` bash
 # install dependencies
 npm install
-
+# install modal
+npm install vue-js-modal --save
+(https://www.npmjs.com/package/vue-js-modal)
 # serve with hot reload at localhost:8080
 npm run dev
 
